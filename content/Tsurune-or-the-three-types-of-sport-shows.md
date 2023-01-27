@@ -70,9 +70,9 @@ On one side you have the sport as a genere that will affilate to boys and on the
 זה סדרות שהתחילו בשלב יותר מאוחר של התחלה עד אמצע שנות ה-90 ואפשר לראות אותם בדגומה מעל כמו H2 בהם עיקר המיקוד של הסדרה הוא הפעילות של הספורט המתואר בעצמו, בכאלה סדרות הדמויות הם מנוע על מנת לחשוף איך הספורט מביע את עצמו, הן באינטרקציה החברתית, בפעילויות אותם הוא מתווה למשתתפים והקשיים שהוא יוצר.
 
 סדרה בסגנון ניתן לראות ב-[Ganba Fly High](https://www.youtube.com/watch?v=bacqrAIdNzM) העוסקת בגימנסטיקה, פרקים שלמים בה מפרטים את האימונים והקשיים בספורט עם התגמול.
-<div dir="rtl">
-## Tsurune
-</div>
+
+<h2 style="text-align: right">Tsurune</h2>
+
 לבינתיים מרגיש לי שהסדרה נופלת על הצד השלישי, עם דמויות יחסית שטוחות אבל תיאור מלא אהבה לספורט דרכם.
 
 ועם זאת אני במידה מסויימת מרגיש מאוכזב מהירידה בסיבוכיות, בעוד שאני לא זר לסגנון ואפילו אוהב אותו הדמויות עצמם מרגישות שטוחות מדי עם התכונת "אופי" היחידה שאני יכול לחשוב עליה זה שהם אוהבים את הספורט ואין לך יותר מדי סיבוכיות באינטרקציה בינהם מעבר לקלישאות הרגילות בסדרות ספורט של היחס של הקבוצה היריבה וכד'.
@@ -82,6 +82,6 @@ On one side you have the sport as a genere that will affilate to boys and on the
 מצד אחד יש לך את הספורט שיפנה לקהל הנערים ומצד שני יש לך הרבה נערים שנחשבים יפים בפני קהל הבנות בגיל העשרה שההפקה יכולה לרמוז מספיק בשביל שהם ייצרו פאנפיק עבורם עם קווירבייט קטנים פה ושם. כל זה וההפקה לא צריכה להתחייב לאף אחד מהם.
 
 [^1]: This can be observed straight from the imagery in the [openning](https://www.youtube.com/watch?v=BWJW1avpmLQ) of the show, alognside the militraistic training routine and the almost national importance as the motivation to the hero
-[^2]: See also this facsinating analysis which I haven't thought in it's direction before. It is not neccisraily fitting within this post but it is mostly comes from change of emphasis from analysis of show structure to the video analysis with it's surrounding.
+[^2]: See also this facsinating [analysis](https://www.youtube.com/watch?v=q0dTxdac6Yo) which I haven't thought in it's direction before. It is not neccisraily fitting within this post but it is mostly comes from change of emphasis from analysis of show structure to the video analysis with it's surrounding.
 [^3]: אפשר לראות זאת עוד מה[פתיח](https://www.youtube.com/watch?v=BWJW1avpmLQ), כמו כן הדגש על שגרת האימונים במהלך הסדרה והשליחות הכמעט לאומית שיש כמוטיבציה לגיבור.
-[^4]: ראו גם את ה(ניתוח)[https://www.youtube.com/watch?v=q0dTxdac6Yo] המעניין שלא חשבתי בכיוון שלו. הוא אינו תואם אבל זה מגיע משינוי המיקוד מניתוח ברמת מבנה הסדרות להקשר החימוני של הסדרה.
+[^4]: ראו גם את ה[ניתוח](https://www.youtube.com/watch?v=q0dTxdac6Yo) המעניין שלא חשבתי בכיוון שלו. הוא אינו תואם אבל זה מגיע משינוי המיקוד מניתוח ברמת מבנה הסדרות להקשר החימוני של הסדרה.
