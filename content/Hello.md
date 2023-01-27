@@ -1,7 +1,7 @@
 Title: First article
-Date: Wed 25 Jan 2023 01:24:33 IST
+Date: Wed 24 Jan 2023 23:24:33 UTC
 Tags: general
-Category: general
+Category: General
 
 Hello and welcome to the blog,
 
