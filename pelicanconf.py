@@ -2,6 +2,8 @@ AUTHOR = 'Ds886'
 SITENAME = 'Random Thoughts'
 SITEURL = ''
 
+
+
 PATH = 'content'
 
 TIMEZONE = 'Asia/Jerusalem'
@@ -16,6 +18,9 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
+
+
+THEME = "./themes/Flex"
 
 # Blogroll
 LINKS = (('To be added', '#'),)
