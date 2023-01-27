@@ -2,8 +2,6 @@ AUTHOR = 'Ds886'
 SITENAME = 'Random Thoughts'
 SITEURL = ''
 
-
-
 PATH = 'content'
 
 TIMEZONE = 'Asia/Jerusalem'
