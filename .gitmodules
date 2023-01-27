@@ -2,3 +2,8 @@
 	path = themes/Pelican-RTL-theme
 	url = https://github.com/ziaa/Pelican-RTL-theme.git
 	branch = master
+
+[submodule "pelican-plugins"]
+	path = themes/Pelican-RTL-theme
+	url = https://github.com/getpelican/pelican-plugins.git
+	branch = master
