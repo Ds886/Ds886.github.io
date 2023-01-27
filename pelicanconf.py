@@ -2,7 +2,7 @@ AUTHOR = 'Ds886'
 SITENAME = 'Random Thoughts'
 SITETITLE = 'Random Thoughts'
 SITEURL = 'https://ds886.github.io'
-SITELOGO = SITEURL + "/images/logo.png"
+SITELOGO = "/images/logo.png"
 
 PATH = 'content'
 
