@@ -23,7 +23,7 @@ AUTHOR_FEED_RSS = None
 THEME = "./themes/Flex"
 
 # Blogroll
-LINKS = (('To be added', '#'),)
+LINKS = (('', '#'),)
 
 # Social widget
 SOCIAL = ()
