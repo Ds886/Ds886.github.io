@@ -1,0 +1,404 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="/theme/font-awesome/css/solid.css">
+
+
+
+
+  <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Random Thoughts Atom">
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Ds886" />
+<meta name="description" content="Tags: programming, python Category: Programming Introduction Currently in the workflow/automation tool industry(docker wrappers, Ansible, CI tools,) there seems to be quite a lot of sophistication. This kind of sophistication is not bad per-se, As long as it fit the aim of what you do, but in many cases …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="Random Thoughts"/>
+  <meta property="og:title" content="Lib recommendation - pydoit"/>
+  <meta property="og:description" content="Tags: programming, python Category: Programming Introduction Currently in the workflow/automation tool industry(docker wrappers, Ansible, CI tools,) there seems to be quite a lot of sophistication. This kind of sophistication is not bad per-se, As long as it fit the aim of what you do, but in many cases …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="/lib-recommendation-pydoit.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-01-27 13:07:33+00:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="/author/ds886.html">
+  <meta property="article:section" content="misc"/>
+  <meta property="og:image" content="/images/logo.png">
+
+  <title>Random Thoughts &ndash; Lib recommendation - pydoit</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="/">
+      <img src="/images/logo.png" alt="Random Thoughts" title="Random Thoughts">
+    </a>
+
+    <h1>
+      <a href="/">Random Thoughts</a>
+    </h1>
+
+
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="#" ></a>
+          </li>
+      </ul>
+    </nav>
+
+  </div>
+
+</aside>
+  <main>
+
+
+<article class="single">
+  <header>
+      
+    <h1 id="lib-recommendation-pydoit">Lib recommendation - pydoit</h1>
+    <p>
+      Posted on Fri 27 January 2023 in <a href="/category/misc.html">misc</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>Tags: programming, python
+Category: Programming</p>
+<h1>Introduction</h1>
+<p>Currently in the workflow/automation tool industry(docker wrappers, Ansible, CI tools,) there seems to be quite a lot of sophistication.</p>
+<p>This kind of sophistication is not bad per-se, As long as it fit the aim of what you do, but in many cases it have the pigeonhole effect where you fit your solution to the tool.</p>
+<p>In addition it is really hard to find the right platform in such condition as you only reach the real and important limitations where it hurts the most and after you are far too deep into the ecosystem the tool provide.</p>
+<p>In order to combat it I've recently looked for alternatives that are more minimalist, which means you own more of the tooling, but also that you can modify them more readily and in the search I've found a nice library called <a href="https://pydoit.org/">pydoit</a> which I would like to highlight that can offer solution in case the need is more lightweight.</p>
+<h1>What it is</h1>
+<p>Pydoit is a library/tool that allow you to write your usual workflow needs in straight python. It works by extracting all the function in the modules that start with <em>task_</em> and running them by order of which he get to them.</p>
+<h1>Strength</h1>
+<ol>
+<li>seamless integration of python functions, as it is basically running a python module.</li>
+<li>shell commands</li>
+<li>Reporter abstraction - each task accumulate to internal data model from which you can extract a report.</li>
+<li>JSON reporter seems to do the work just fine</li>
+<li>Verasity tracking of the commands - handling if command succeeded or failed.(In case of python based if it returned <em>True</em> or <em>False</em> and in shell based on non-zero exit)</li>
+<li>Makefile-like target based tooling</li>
+</ol>
+<h1>Use cases</h1>
+<ol>
+<li>A set of complex tasks that are too complex for shell scripts but also need to be portable</li>
+<li>Integrated runner</li>
+<li>Integrating more tightly the workflow engine to a complex application that compiled to native(using bindings) or have heavy use of python</li>
+<li>Simple workflow engine for small on the fly runner with more programmable access</li>
+</ol>
+<h1>Limitation/ambiguous</h1>
+<ol>
+<li>Documentation is not the best However it is relatively small code base which I've found to be pretty hackable and easy to understand.</li>
+<li>A lot of basic thing you usually use naturally in a big ecosystem such as Ansible are now in your hand - This is both a strength but also come with a cost since all the R&amp;D cost and bugs are now from your side rather than from a community and open-source collaboration<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></li>
+<li>Sometimes unexpected in how the workflow code works due to the reflective methodology - For example if you run a function outside task it will be executed upon loading the module, and sometimes it is not as obvious how to insert your own function.</li>
+</ol>
+<h1>How does a pydoit project can look like</h1>
+<p>During the discovery phase I've found the tooling to be quite versatile and here are few deployment ideas<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></p>
+<h2>Using the CLI tool</h2>
+<p>Pydoit by default have a CLI tool which is built using a modular python class.</p>
+<p>In terms of folder structure you need to have a dodo.py with the workflow module and run the doit executable wrapper</p>
+<p>In such context I will also prefer to use it with some Makefile or a shell script just to tidy up unexpected results and have easy expandability when it is needed to create more complex interaction with other tools</p>
+<h3>Folder structure(Plain + INI config)</h3>
+<div class="highlight"><pre><span></span><code>├── dodo.py
+├── doit.cfg
+└── Makefile
+</code></pre></div>
+
+<h3><a href="https://pydoit.org/tasks.html">Code(taken from the official documentation)</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">task_hello</span><span class="p">()</span><span class="err">:</span>
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;hello&quot;&quot;&quot;</span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">python_hello</span><span class="p">(</span><span class="n">targets</span><span class="p">)</span><span class="err">:</span>
+<span class="w">        </span><span class="k">with</span><span class="w"> </span><span class="k">open</span><span class="p">(</span><span class="n">targets</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;a&quot;</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">output</span><span class="err">:</span>
+<span class="w">            </span><span class="k">output</span><span class="p">.</span><span class="k">write</span><span class="p">(</span><span class="ss">&quot;Python says Hello World!!!\n&quot;</span><span class="p">)</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="err">{</span>
+<span class="w">        </span><span class="s1">&#39;actions&#39;</span><span class="err">:</span><span class="w"> </span><span class="o">[</span><span class="n">python_hello</span><span class="o">]</span><span class="p">,</span>
+<span class="w">        </span><span class="s1">&#39;targets&#39;</span><span class="err">:</span><span class="w"> </span><span class="o">[</span><span class="n">&quot;hello.txt&quot;</span><span class="o">]</span><span class="p">,</span>
+<span class="w">        </span><span class="err">}</span>
+</code></pre></div>
+
+<h3><a href="https://pydoit.org/configuration.html#doit-cfg">doit.cfg</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">[GLOBAL]</span>
+<span class="na">backend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">json</span>
+<span class="na">reporter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">json</span>
+
+<span class="k">[list]</span>
+<span class="na">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">True</span>
+<span class="na">subtasks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">True</span>
+</code></pre></div>
+
+<h3>Makefile<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup></h3>
+<div class="highlight"><pre><span></span><code>DOIT=$(shell<span class="w"> </span>command<span class="w"> </span>-v<span class="w"> </span>doit)
+JQ=$(shell<span class="w"> </span>command<span class="w"> </span>-v<span class="w"> </span>jq)
+
+RESULTS=hello.txt<span class="w"> </span>__pycache__
+
+.PHONY:<span class="w"> </span>run<span class="w"> </span>clean
+all:<span class="w"> </span>run
+
+run:
+<span class="w">    </span><span class="cp">${</span><span class="n">DOIT</span><span class="cp">}</span><span class="w"> </span>|<span class="w"> </span><span class="cp">${</span><span class="n">JQ</span><span class="cp">}</span>
+
+clean:
+<span class="w">    </span><span class="cp">${</span><span class="n">RM</span><span class="cp">}</span><span class="w"> </span>-r<span class="w"> </span><span class="cp">${</span><span class="n">RESULTS</span><span class="cp">}</span>
+</code></pre></div>
+
+<h3>Result</h3>
+<div class="highlight"><pre><span></span><code>&lt;fullpath&gt;/doit | /usr/bin/jq
+{
+  &quot;tasks&quot;: [
+    {
+      &quot;name&quot;: &quot;hello&quot;,
+      &quot;result&quot;: &quot;success&quot;,
+      &quot;out&quot;: &quot;&quot;,
+      &quot;err&quot;: &quot;&quot;,
+      &quot;error&quot;: null,
+      &quot;started&quot;: &quot;2023-02-05 20:35:56.767689&quot;,
+      &quot;elapsed&quot;: 7.319450378417969e-05
+    }
+  ],
+  &quot;out&quot;: &quot;&quot;,
+  &quot;err&quot;: &quot;&quot;
+}
+</code></pre></div>
+
+<h2>doit Executable + Embedded config</h2>
+<h3>Folder structure(Plain + INI config)</h3>
+<div class="highlight"><pre><span></span><code>├── dodo.py
+└── Makefile
+</code></pre></div>
+
+<h3><a href="https://pydoit.org/tasks.html">Code(taken from the official documentation)</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">DOIT_CONFIG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{</span>
+<span class="w">    </span><span class="s1">&#39;backend&#39;</span><span class="err">:</span><span class="w"> </span><span class="s1">&#39;json&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;reporter&#39;</span><span class="err">:</span><span class="w"> </span><span class="s1">&#39;json&#39;</span>
+<span class="err">}</span>
+
+
+<span class="n">def</span><span class="w"> </span><span class="n">task_hello</span><span class="p">()</span><span class="err">:</span>
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;hello&quot;&quot;&quot;</span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">python_hello</span><span class="p">(</span><span class="n">targets</span><span class="p">)</span><span class="err">:</span>
+<span class="w">        </span><span class="k">with</span><span class="w"> </span><span class="k">open</span><span class="p">(</span><span class="n">targets</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;a&quot;</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">output</span><span class="err">:</span>
+<span class="w">            </span><span class="k">output</span><span class="p">.</span><span class="k">write</span><span class="p">(</span><span class="ss">&quot;Python says Hello World!!!\n&quot;</span><span class="p">)</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="err">{</span>
+<span class="w">        </span><span class="s1">&#39;actions&#39;</span><span class="err">:</span><span class="w"> </span><span class="o">[</span><span class="n">python_hello</span><span class="o">]</span><span class="p">,</span>
+<span class="w">        </span><span class="s1">&#39;targets&#39;</span><span class="err">:</span><span class="w"> </span><span class="o">[</span><span class="n">&quot;hello.txt&quot;</span><span class="o">]</span><span class="p">,</span>
+<span class="w">        </span><span class="err">}</span>
+</code></pre></div>
+
+<h3>Makefile</h3>
+<div class="highlight"><pre><span></span><code>DOIT=$(shell<span class="w"> </span>command<span class="w"> </span>-v<span class="w"> </span>doit)
+JQ=$(shell<span class="w"> </span>command<span class="w"> </span>-v<span class="w"> </span>jq)
+
+RESULTS=hello.txt<span class="w"> </span>__pycache__
+
+.PHONY:<span class="w"> </span>run<span class="w"> </span>clean
+all:<span class="w"> </span>run
+
+run:
+<span class="w">    </span><span class="cp">${</span><span class="n">DOIT</span><span class="cp">}</span><span class="w"> </span>|<span class="w"> </span><span class="cp">${</span><span class="n">JQ</span><span class="cp">}</span>
+
+clean:
+<span class="w">    </span><span class="cp">${</span><span class="n">RM</span><span class="cp">}</span><span class="w"> </span>-r<span class="w"> </span><span class="cp">${</span><span class="n">RESULTS</span><span class="cp">}</span>
+</code></pre></div>
+
+<h3>Result</h3>
+<div class="highlight"><pre><span></span><code>&lt;fullpath&gt;/doit | /usr/bin/jq
+{
+  &quot;tasks&quot;: [
+    {
+      &quot;name&quot;: &quot;hello&quot;,
+      &quot;result&quot;: &quot;success&quot;,
+      &quot;out&quot;: &quot;&quot;,
+      &quot;err&quot;: &quot;&quot;,
+      &quot;error&quot;: null,
+      &quot;started&quot;: &quot;2023-02-05 20:35:56.767689&quot;,
+      &quot;elapsed&quot;: 7.319450378417969e-05
+    }
+  ],
+  &quot;out&quot;: &quot;&quot;,
+  &quot;err&quot;: &quot;&quot;
+}
+</code></pre></div>
+
+<h2>Overriding the runner</h2>
+<p>The runner is a modular aspect of the system and as such can be implemented in python in an integrated manner<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup></p>
+<h3>Folder structure</h3>
+<div class="highlight"><pre><span></span><code>├── Makefile
+├── run.py
+└── workflows
+    └── my_workflow.py
+</code></pre></div>
+
+<h3>Code(taken from the <a href="https://pydoit.org/tasks.html">official documentation</a> and <a href="https://pydoit.org/configuration.html#configuration-at-dodo-py">this</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">DOIT_CONFIG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{</span>
+<span class="w">    </span><span class="s1">&#39;backend&#39;</span><span class="err">:</span><span class="w"> </span><span class="s1">&#39;json&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;reporter&#39;</span><span class="err">:</span><span class="w"> </span><span class="s1">&#39;json&#39;</span>
+<span class="err">}</span>
+
+
+<span class="n">def</span><span class="w"> </span><span class="n">task_hello</span><span class="p">()</span><span class="err">:</span>
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;hello&quot;&quot;&quot;</span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">python_hello</span><span class="p">(</span><span class="n">targets</span><span class="p">)</span><span class="err">:</span>
+<span class="w">        </span><span class="k">with</span><span class="w"> </span><span class="k">open</span><span class="p">(</span><span class="n">targets</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;a&quot;</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">output</span><span class="err">:</span>
+<span class="w">            </span><span class="k">output</span><span class="p">.</span><span class="k">write</span><span class="p">(</span><span class="ss">&quot;Python says Hello World!!!\n&quot;</span><span class="p">)</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="err">{</span>
+<span class="w">        </span><span class="s1">&#39;actions&#39;</span><span class="err">:</span><span class="w"> </span><span class="o">[</span><span class="n">python_hello</span><span class="o">]</span><span class="p">,</span>
+<span class="w">        </span><span class="s1">&#39;targets&#39;</span><span class="err">:</span><span class="w"> </span><span class="o">[</span><span class="n">&quot;hello.txt&quot;</span><span class="o">]</span><span class="p">,</span>
+<span class="w">        </span><span class="err">}</span>
+</code></pre></div>
+
+<h3>run.py</h3>
+<div class="highlight"><pre><span></span><code><span class="ch">#! /usr/bin/env python3</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">from</span> <span class="nn">doit.cmd_base</span> <span class="kn">import</span> <span class="n">ModuleTaskLoader</span>
+<span class="kn">from</span> <span class="nn">doit.doit_cmd</span> <span class="kn">import</span> <span class="n">DoitMain</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">workflows</span> <span class="kn">import</span> <span class="n">my_workflow</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">DoitMain</span><span class="p">(</span><span class="n">ModuleTaskLoader</span><span class="p">(</span><span class="n">my_workflow</span><span class="p">))</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span>
+</code></pre></div>
+
+<h3>Makefile</h3>
+<div class="highlight"><pre><span></span><code>DOIT=./run.py
+PYTHON=$(shell<span class="w"> </span>command<span class="w"> </span>-v<span class="w"> </span>python3)
+JQ=$(shell<span class="w"> </span>command<span class="w"> </span>-v<span class="w"> </span>jq)
+
+
+RESULTS=hello.txt<span class="w"> </span>__pycache__
+
+.PHONY:<span class="w"> </span>run<span class="w"> </span>clean<span class="w"> </span>deps
+
+all:<span class="w"> </span>run
+
+deps:
+<span class="w">    </span>ifeq<span class="w"> </span>($(strip<span class="w"> </span>$(PYTHON)),)
+<span class="w">    </span>$(error<span class="w"> </span>&quot;python3&quot;<span class="w"> </span>not<span class="w"> </span>found)
+<span class="w">    </span>endif
+
+<span class="w">    </span>ifeq<span class="w"> </span>($(strip<span class="w"> </span>$(JQ<span class="w"> </span>)),)
+<span class="w">    </span>$(error<span class="w"> </span>&quot;jq&quot;<span class="w"> </span>not<span class="w"> </span>found)
+<span class="w">    </span>endif
+
+run:
+<span class="w">    </span><span class="cp">${</span><span class="n">PYTHON</span><span class="cp">}</span><span class="w"> </span><span class="cp">${</span><span class="n">DOIT</span><span class="cp">}</span><span class="w"> </span>|<span class="w"> </span><span class="cp">${</span><span class="n">JQ</span><span class="cp">}</span>
+
+clean:
+<span class="w">    </span><span class="cp">${</span><span class="n">RM</span><span class="cp">}</span><span class="w"> </span>-r<span class="w"> </span><span class="cp">${</span><span class="n">RESULTS</span><span class="cp">}</span>
+</code></pre></div>
+
+<h3>Result</h3>
+<div class="highlight"><pre><span></span><code>/usr/bin/python3 ./run.py | /usr/bin/jq
+{
+  &quot;tasks&quot;: [
+    {
+      &quot;name&quot;: &quot;hello&quot;,
+      &quot;result&quot;: &quot;success&quot;,
+      &quot;out&quot;: &quot;&quot;,
+      &quot;err&quot;: &quot;&quot;,
+      &quot;error&quot;: null,
+      &quot;started&quot;: &quot;2023-02-05 20:35:56.767689&quot;,
+      &quot;elapsed&quot;: 7.319450378417969e-05
+    }
+  ],
+  &quot;out&quot;: &quot;&quot;,
+  &quot;err&quot;: &quot;&quot;
+}
+</code></pre></div>
+
+<h1>Summary</h1>
+<p>I hope the article opened some easier on-boarding and open ideas for newer solutions</p>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Although there isn't a strict ecosystem like in the case of ansible you still have the pythonic ecosystem and it is possible foreign bindings&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>The code examples are given with free of usage, copying and redistributing&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>This is not strictly necessary but just a personal practice I've found useful. Alternatively you can just run <code>doit | jq</code> in the folder&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>the following structure is just for the pydoit aspect and can be extended as needed and the norms of the particular codebase&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy;  </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Random Thoughts ",
+  "url" : "",
+  "image": "/images/logo.png",
+  "description": ""
+}
+</script>
+</body>
+</html>
