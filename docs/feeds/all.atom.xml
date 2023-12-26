@@ -5,26 +5,13 @@ Category: Programming&lt;/p&gt;
 &lt;p&gt;I tend to expiremnt with different ways to bootstrap in agnostic manner&lt;/p&gt;
 &lt;p&gt;The following code is another attempt in managing dependency across platform&lt;/p&gt;
 &lt;p&gt;In terms of usage it can be plugged in the beginning&lt;/p&gt;
-&lt;h1&gt;Variables&lt;/h1&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Variable&lt;/th&gt;
-&lt;th&gt;Description&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;SYS_PACKAGER_CMD&lt;/td&gt;
-&lt;td&gt;Executable of the packager name&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;SYS_PACKAGER_CMD_UPDATE_KEYWORD …&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;</summary><content type="html">&lt;p&gt;Tags: programming, bash
+&lt;p&gt;This can be further simplified or expanded fairly easily depedning …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Tags: programming, bash
 Category: Programming&lt;/p&gt;
 &lt;h1&gt;Introduction&lt;/h1&gt;
 &lt;p&gt;I tend to expiremnt with different ways to bootstrap in agnostic manner&lt;/p&gt;
 &lt;p&gt;The following code is another attempt in managing dependency across platform&lt;/p&gt;
 &lt;p&gt;In terms of usage it can be plugged in the beginning&lt;/p&gt;
+&lt;p&gt;This can be further simplified or expanded fairly easily depedning on the usecase&lt;/p&gt;
 &lt;h1&gt;Variables&lt;/h1&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -180,12 +167,7 @@ Category: Programming&lt;/p&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;SYS_PACKAGER_CMD_UPDATE_KEYWORD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;update&amp;quot;&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;;;&lt;/span&gt;
 
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;zypper&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;SYS_PACKAGER_CMD_INSTALL_KEYWORD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;install -y&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;SYS_PACKAGER_CMD_UPDATE_KEYWORD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;update -y&amp;quot;&lt;/span&gt;
-&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;;;&lt;/span&gt;
-
-&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;dnf&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;zypper&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;dnf&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;SYS_PACKAGER_CMD_INSTALL_KEYWORD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;install -y&amp;quot;&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nv"&gt;SYS_PACKAGER_CMD_UPDATE_KEYWORD&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;update -y&amp;quot;&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;;;&lt;/span&gt;

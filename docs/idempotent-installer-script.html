@@ -37,13 +37,13 @@
  
 
 <meta name="author" content="Ds886" />
-<meta name="description" content="Tags: programming, bash Category: Programming Introduction I tend to expiremnt with different ways to bootstrap in agnostic manner The following code is another attempt in managing dependency across platform In terms of usage it can be plugged in the beginning Variables Variable Description SYS_PACKAGER_CMD Executable of the packager name SYS_PACKAGER_CMD_UPDATE_KEYWORD …" />
+<meta name="description" content="Tags: programming, bash Category: Programming Introduction I tend to expiremnt with different ways to bootstrap in agnostic manner The following code is another attempt in managing dependency across platform In terms of usage it can be plugged in the beginning This can be further simplified or expanded fairly easily depedning …" />
 <meta name="keywords" content="">
 
 
   <meta property="og:site_name" content="Random Thoughts"/>
   <meta property="og:title" content="Idempotent installer script"/>
-  <meta property="og:description" content="Tags: programming, bash Category: Programming Introduction I tend to expiremnt with different ways to bootstrap in agnostic manner The following code is another attempt in managing dependency across platform In terms of usage it can be plugged in the beginning Variables Variable Description SYS_PACKAGER_CMD Executable of the packager name SYS_PACKAGER_CMD_UPDATE_KEYWORD …"/>
+  <meta property="og:description" content="Tags: programming, bash Category: Programming Introduction I tend to expiremnt with different ways to bootstrap in agnostic manner The following code is another attempt in managing dependency across platform In terms of usage it can be plugged in the beginning This can be further simplified or expanded fairly easily depedning …"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="/idempotent-installer-script.html"/>
   <meta property="og:type" content="article"/>
@@ -106,6 +106,7 @@ Category: Programming</p>
 <p>I tend to expiremnt with different ways to bootstrap in agnostic manner</p>
 <p>The following code is another attempt in managing dependency across platform</p>
 <p>In terms of usage it can be plugged in the beginning</p>
+<p>This can be further simplified or expanded fairly easily depedning on the usecase</p>
 <h1>Variables</h1>
 <table>
 <thead>
@@ -261,12 +262,7 @@ Category: Programming</p>
 <span class="w">    </span><span class="nv">SYS_PACKAGER_CMD_UPDATE_KEYWORD</span><span class="o">=</span><span class="s2">&quot;update&quot;</span>
 <span class="w">    </span><span class="p">;;</span>
 
-<span class="w">  </span><span class="s2">&quot;zypper&quot;</span><span class="o">)</span>
-<span class="w">    </span><span class="nv">SYS_PACKAGER_CMD_INSTALL_KEYWORD</span><span class="o">=</span><span class="s2">&quot;install -y&quot;</span>
-<span class="w">    </span><span class="nv">SYS_PACKAGER_CMD_UPDATE_KEYWORD</span><span class="o">=</span><span class="s2">&quot;update -y&quot;</span>
-<span class="w">    </span><span class="p">;;</span>
-
-<span class="w">  </span><span class="s2">&quot;dnf&quot;</span><span class="o">)</span>
+<span class="w">  </span><span class="s2">&quot;zypper&quot;</span><span class="p">|</span><span class="s2">&quot;dnf&quot;</span><span class="o">)</span>
 <span class="w">    </span><span class="nv">SYS_PACKAGER_CMD_INSTALL_KEYWORD</span><span class="o">=</span><span class="s2">&quot;install -y&quot;</span>
 <span class="w">    </span><span class="nv">SYS_PACKAGER_CMD_UPDATE_KEYWORD</span><span class="o">=</span><span class="s2">&quot;update -y&quot;</span>
 <span class="w">    </span><span class="p">;;</span>

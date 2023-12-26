@@ -13,6 +13,8 @@ The following code is another attempt in managing dependency across platform
 
 In terms of usage it can be plugged in the beginning
 
+This can be further simplified or expanded fairly easily depedning on the usecase
+
 # Variables
 
 | Variable | Description|
@@ -120,12 +122,7 @@ case "${SYS_PACKAGER_CMD}" in
     SYS_PACKAGER_CMD_UPDATE_KEYWORD="update"
     ;;
 
-  "zypper")
-    SYS_PACKAGER_CMD_INSTALL_KEYWORD="install -y"
-    SYS_PACKAGER_CMD_UPDATE_KEYWORD="update -y"
-    ;;
-
-  "dnf")
+  "zypper"|"dnf")
     SYS_PACKAGER_CMD_INSTALL_KEYWORD="install -y"
     SYS_PACKAGER_CMD_UPDATE_KEYWORD="update -y"
     ;;
