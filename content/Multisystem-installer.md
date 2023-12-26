@@ -9,17 +9,17 @@ Category: Programming
 
 I tend to expiremnt with different ways to bootstrap in agnostic manner
 
-The following code  is another attempt in managing dependency across platform
+The following code is another attempt in managing dependency across platform
 
-In  terms of usage  it can be  plugged  in  the beginning
+In terms of usage it can be plugged in the beginning
 
 # Variables
 
 | Variable | Description|
 -----------|------------
-|SYS_PACKAGER_CMD|executable of the packager name|
-|SYS_PACKAGER_CMD_UPDATE_KEYWORD|update command of the packager (can accept none)|
-|SYS_PACKAGER_CMD_INSTALL_KEYWORD|install command of the packager (must have a value)|
+|SYS_PACKAGER_CMD|Executable of the packager name|
+|SYS_PACKAGER_CMD_UPDATE_KEYWORD|Update command of the packager (can accept none)|
+|SYS_PACKAGER_CMD_INSTALL_KEYWORD|Install command of the packager (must have a value)|
 |SYS_DEPS|Total dependencies (can accept none)|
 |SYS_DEPS_SHARED|Dependecies with universal names across distro|
 |SYS_DEPS_DEBIAN|Dependecies with names unique to Debain|
