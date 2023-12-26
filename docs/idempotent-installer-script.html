@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/theme/stylesheet/style.min.css">
+
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="/theme/pygments/github.min.css">
+
+
+
+  <link rel="stylesheet" type="text/css" href="/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="/theme/font-awesome/css/solid.css">
+
+
+
+
+  <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Random Thoughts Atom">
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Ds886" />
+<meta name="description" content="Tags: programming, bash Category: Programming Introduction I tend to expiremnt with different ways to bootstrap in agnostic manner The following code is another attempt in managing dependency across platform In terms of usage it can be plugged in the beginning Variables Variable Description SYS_PACKAGER_CMD executable of the packager name SYS_PACKAGER_CMD_UPDATE_KEYWORD …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="Random Thoughts"/>
+  <meta property="og:title" content="Idempotent installer script"/>
+  <meta property="og:description" content="Tags: programming, bash Category: Programming Introduction I tend to expiremnt with different ways to bootstrap in agnostic manner The following code is another attempt in managing dependency across platform In terms of usage it can be plugged in the beginning Variables Variable Description SYS_PACKAGER_CMD executable of the packager name SYS_PACKAGER_CMD_UPDATE_KEYWORD …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="/idempotent-installer-script.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-01-27 13:07:33+00:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="/author/ds886.html">
+  <meta property="article:section" content="misc"/>
+  <meta property="og:image" content="/images/logo.png">
+
+  <title>Random Thoughts &ndash; Idempotent installer script</title>
+
+
+</head>
+<body class="light-theme">
+
+<aside>
+  <div>
+    <a href="/">
+      <img src="/images/logo.png" alt="Random Thoughts" title="Random Thoughts">
+    </a>
+
+    <h1>
+      <a href="/">Random Thoughts</a>
+    </h1>
+
+
+
+    <nav>
+      <ul class="list">
+
+
+
+          <li>
+            <a target="_self" href="#" ></a>
+          </li>
+      </ul>
+    </nav>
+
+  </div>
+
+</aside>
+  <main>
+
+
+<article class="single">
+  <header>
+      
+    <h1 id="idempotent-installer-script">Idempotent installer script</h1>
+    <p>
+      Posted on Fri 27 January 2023 in <a href="/category/misc.html">misc</a>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>Tags: programming, bash
+Category: Programming</p>
+<h1>Introduction</h1>
+<p>I tend to expiremnt with different ways to bootstrap in agnostic manner</p>
+<p>The following code  is another attempt in managing dependency across platform</p>
+<p>In  terms of usage  it can be  plugged  in  the beginning</p>
+<h1>Variables</h1>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SYS_PACKAGER_CMD</td>
+<td>executable of the packager name</td>
+</tr>
+<tr>
+<td>SYS_PACKAGER_CMD_UPDATE_KEYWORD</td>
+<td>update command of the packager (can accept none)</td>
+</tr>
+<tr>
+<td>SYS_PACKAGER_CMD_INSTALL_KEYWORD</td>
+<td>install command of the packager (must have a value)</td>
+</tr>
+<tr>
+<td>SYS_DEPS</td>
+<td>Total dependencies (can accept none)</td>
+</tr>
+<tr>
+<td>SYS_DEPS_SHARED</td>
+<td>Dependecies with universal names across distro</td>
+</tr>
+<tr>
+<td>SYS_DEPS_DEBIAN</td>
+<td>Dependecies with names unique to Debain</td>
+</tr>
+<tr>
+<td>SYS_DEPS_UBUNTU</td>
+<td>Dependecies with names unique to Ubuntu</td>
+</tr>
+<tr>
+<td>SYS_DEPS_ALPINE</td>
+<td>Dependecies with names unique to Alpine</td>
+</tr>
+<tr>
+<td>SYS_DEPS_SUSE_BASE</td>
+<td>Dependecies with names unique to SuSe (shared between Leap and Tumbleweed)</td>
+</tr>
+<tr>
+<td>SYS_DEPS_SUSE_LEAP</td>
+<td>Dependecies with names unique to SuSe Leap (added on top of SYS_DEPS_SUSE_BASE)</td>
+</tr>
+<tr>
+<td>SYS_DEPS_SUSE_TUMBLEWEED</td>
+<td>Dependecies with names unique to SuSe Tumbleweed (added on top of SYS_DEPS_SUSE_BASE)</td>
+</tr>
+<tr>
+<td>SYS_DEPS_RHEL_BASE</td>
+<td>Dependecies with names unique to RHEL based distro(shared between fedora, RHEL, rocky, alma)</td>
+</tr>
+<tr>
+<td>SYS_DEPS_RHEL_FEDORA</td>
+<td>Dependecies with names unique to fedora (added on top of SYS_DEPS_RHEL_BASE)</td>
+</tr>
+<tr>
+<td>SYS_DEPS_RHEL_RHEL</td>
+<td>Dependecies with names unique to RHEL (added on top of SYS_DEPS_RHEL_BASE)</td>
+</tr>
+<tr>
+<td>SYS_DEPS_RHEL_ROCKY</td>
+<td>Dependecies with names unique to Rocky (added on top of SYS_DEPS_RHEL_BASE)</td>
+</tr>
+</tbody>
+</table>
+<h1>Code</h1>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/sh</span>
+<span class="nb">set</span><span class="w"> </span>-eu
+
+<span class="nv">SYS_TYPE</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">&#39;^ID=&#39;</span><span class="w"> </span>/etc/os-release<span class="p">|</span>awk<span class="w"> </span>-F<span class="o">=</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="p">|</span>tr<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;&quot;&#39;</span><span class="k">)</span><span class="s2">&quot;</span>
+<span class="nv">SYS_PACKAGER_CMD</span><span class="o">=</span><span class="s2">&quot;none&quot;</span>
+<span class="nv">SYS_PACKAGER_CMD_UPDATE_KEYWORD</span><span class="o">=</span><span class="s2">&quot;none&quot;</span>
+<span class="nv">SYS_PACKAGER_CMD_INSTALL_KEYWORD</span><span class="o">=</span><span class="s2">&quot;none&quot;</span>
+<span class="nv">SYS_DEPS</span><span class="o">=</span><span class="s2">&quot;none&quot;</span>
+<span class="nv">SYS_DEPS_SHARED</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+
+<span class="nv">SYS_DEPS_DEBIAN</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="nv">SYS_DEPS_UBUNTU</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+
+<span class="nv">SYS_DEPS_ALPINE</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+
+<span class="nv">SYS_DEPS_SUSE_BASE</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="nv">SYS_DEPS_SUSE_LEAP</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="nv">SYS_DEPS_SUSE_TUMBLEWEED</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+
+
+<span class="nv">SYS_DEPS_RHEL_BASE</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="nv">SYS_DEPS_RHEL_FEDORA</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="nv">SYS_DEPS_RHEL_RHEL</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="nv">SYS_DEPS_RHEL_ROCKY</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SYS_TYPE</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;none&quot;</span><span class="w"> </span><span class="o">]</span>
+<span class="k">then</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;System wasn&#39;t detected&quot;</span>
+<span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
+
+<span class="nv">SYS_DEPS</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SYS_DEPS_SHARED</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="k">case</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SYS_TYPE</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">in</span>
+<span class="w">  </span><span class="s2">&quot;alpine&quot;</span><span class="o">)</span>
+<span class="w">    </span><span class="nv">SYS_PACKAGER_CMD</span><span class="o">=</span><span class="s2">&quot;apk&quot;</span>
+<span class="w">    </span><span class="nv">SYS_DEPS</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SYS_DEPS</span><span class="si">}</span><span class="s2"> </span><span class="si">${</span><span class="nv">SYS_DEPS_ALPINE</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="p">;;</span>
+<span class="w">  </span><span class="s2">&quot;debian&quot;</span><span class="o">)</span>
+<span class="w">    </span><span class="nv">SYS_PACKAGER_CMD</span><span class="o">=</span><span class="s2">&quot;apt&quot;</span>
+<span class="w">    </span><span class="nv">SYS_DEPS</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SYS_DEPS</span><span class="si">}</span><span class="s2"> </span><span class="si">${</span><span class="nv">SYS_DEPS_DEBIAN</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="p">;;</span>
+
+<span class="w">  </span><span class="s2">&quot;ubuntu&quot;</span><span class="o">)</span>
+<span class="w">    </span><span class="nv">SYS_PACKAGER_CMD</span><span class="o">=</span><span class="s2">&quot;apt&quot;</span>
+<span class="w">    </span><span class="nv">SYS_DEPS</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SYS_DEPS</span><span class="si">}</span><span class="s2"> </span><span class="si">${</span><span class="nv">SYS_DEPS_UBUNTU</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="p">;;</span>
+<span class="w">  </span><span class="s2">&quot;opensuse-tumbleweed&quot;</span><span class="o">)</span>
+<span class="w">    </span><span class="nv">SYS_PACKAGER_CMD</span><span class="o">=</span><span class="s2">&quot;zypper&quot;</span>
+<span class="w">    </span><span class="nv">SYS_DEPS</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SYS_DEPS</span><span class="si">}</span><span class="s2"> </span><span class="si">${</span><span class="nv">SYS_DEPS_SUSE_BASE</span><span class="si">}</span><span class="s2"> </span><span class="si">${</span><span class="nv">SYS_DEPS_SUSE_TUMBLEWEED</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="p">;;</span>
+
+<span class="w">  </span><span class="s2">&quot;opensuse-leap&quot;</span><span class="o">)</span>
+<span class="w">    </span><span class="nv">SYS_PACKAGER_CMD</span><span class="o">=</span><span class="s2">&quot;zypper&quot;</span>
+<span class="w">    </span><span class="nv">SYS_DEPS</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SYS_DEPS</span><span class="si">}</span><span class="s2"> </span><span class="si">${</span><span class="nv">SYS_DEPS_SUSE_BASE</span><span class="si">}</span><span class="s2"> </span><span class="si">${</span><span class="nv">SYS_DEPS_SUSE_LEAP</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="p">;;</span>
+
+<span class="w">  </span><span class="s2">&quot;fedora&quot;</span><span class="o">)</span>
+<span class="w">    </span><span class="nv">SYS_PACKAGER_CMD</span><span class="o">=</span><span class="s2">&quot;dnf&quot;</span>
+<span class="w">    </span><span class="nv">SYS_DEPS</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SYS_DEPS</span><span class="si">}</span><span class="s2"> </span><span class="si">${</span><span class="nv">SYS_DEPS_RHEL_BASE</span><span class="si">}</span><span class="s2"> </span><span class="si">${</span><span class="nv">SYS_DEPS_RHEL_FEDORA</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="p">;;</span>
+
+<span class="w">  </span><span class="s2">&quot;rhel&quot;</span><span class="o">)</span>
+<span class="w">    </span><span class="nv">SYS_PACKAGER_CMD</span><span class="o">=</span><span class="s2">&quot;dnf&quot;</span>
+<span class="w">    </span><span class="nv">SYS_DEPS</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SYS_DEPS</span><span class="si">}</span><span class="s2"> </span><span class="si">${</span><span class="nv">SYS_DEPS_RHEL_BASE</span><span class="si">}</span><span class="s2"> </span><span class="si">${</span><span class="nv">SYS_DEPS_RHEL_RHEL</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="p">;;</span>
+
+<span class="w">  </span><span class="s2">&quot;rocky&quot;</span><span class="o">)</span>
+<span class="w">    </span><span class="nv">SYS_PACKAGER_CMD</span><span class="o">=</span><span class="s2">&quot;dnf&quot;</span>
+<span class="w">    </span><span class="nv">SYS_DEPS</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SYS_DEPS</span><span class="si">}</span><span class="s2"> </span><span class="si">${</span><span class="nv">SYS_DEPS_RHEL_BASE</span><span class="si">}</span><span class="s2"> </span><span class="si">${</span><span class="nv">SYS_DEPS_RHEL_ROCKY</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="w">    </span><span class="p">;;</span>
+<span class="k">esac</span>
+
+<span class="k">case</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SYS_PACKAGER_CMD</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">in</span>
+<span class="w">  </span><span class="s2">&quot;apk&quot;</span><span class="o">)</span>
+<span class="w">    </span><span class="nv">SYS_PACKAGER_CMD_INSTALL_KEYWORD</span><span class="o">=</span><span class="s2">&quot;add&quot;</span>
+<span class="w">    </span><span class="nv">SYS_PACKAGER_CMD_UPDATE_KEYWORD</span><span class="o">=</span><span class="s2">&quot;none&quot;</span>
+<span class="w">    </span><span class="p">;;</span>
+
+<span class="w">  </span><span class="s2">&quot;apt&quot;</span><span class="o">)</span>
+<span class="w">    </span><span class="nv">SYS_PACKAGER_CMD_INSTALL_KEYWORD</span><span class="o">=</span><span class="s2">&quot;install -y&quot;</span>
+<span class="w">    </span><span class="nv">SYS_PACKAGER_CMD_UPDATE_KEYWORD</span><span class="o">=</span><span class="s2">&quot;update&quot;</span>
+<span class="w">    </span><span class="p">;;</span>
+
+<span class="w">  </span><span class="s2">&quot;zypper&quot;</span><span class="o">)</span>
+<span class="w">    </span><span class="nv">SYS_PACKAGER_CMD_INSTALL_KEYWORD</span><span class="o">=</span><span class="s2">&quot;install -y&quot;</span>
+<span class="w">    </span><span class="nv">SYS_PACKAGER_CMD_UPDATE_KEYWORD</span><span class="o">=</span><span class="s2">&quot;update -y&quot;</span>
+<span class="w">    </span><span class="p">;;</span>
+
+<span class="w">  </span><span class="s2">&quot;dnf&quot;</span><span class="o">)</span>
+<span class="w">    </span><span class="nv">SYS_PACKAGER_CMD_INSTALL_KEYWORD</span><span class="o">=</span><span class="s2">&quot;install -y&quot;</span>
+<span class="w">    </span><span class="nv">SYS_PACKAGER_CMD_UPDATE_KEYWORD</span><span class="o">=</span><span class="s2">&quot;update -y&quot;</span>
+<span class="w">    </span><span class="p">;;</span>
+<span class="k">esac</span>
+
+
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">SYS_DEPS</span><span class="si">}</span><span class="s2">&quot;</span><span class="w">  </span>!<span class="o">=</span><span class="w"> </span><span class="s2">&quot;none&quot;</span><span class="w"> </span><span class="o">]</span>
+<span class="k">then</span>
+<span class="w">  </span><span class="c1"># shellcheck disable=2086</span>
+<span class="w">  </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SYS_PACKAGER_CMD_UPDATE_KEYWORD</span><span class="s2">&quot;</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span><span class="s2">&quot;none&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="si">${</span><span class="nv">SYS_PACKAGER_CMD</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">SYS_PACKAGER_CMD_UPDATE_KEYWORD</span><span class="si">}</span>
+
+<span class="w">  </span><span class="c1"># shellcheck disable=2086</span>
+<span class="w">  </span><span class="si">${</span><span class="nv">SYS_PACKAGER_CMD</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">SYS_PACKAGER_CMD_INSTALL_KEYWORD</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">SYS_DEPS</span><span class="si">}</span>
+<span class="k">fi</span>
+</code></pre></div>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy;  </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Random Thoughts ",
+  "url" : "",
+  "image": "/images/logo.png",
+  "description": ""
+}
+</script>
+</body>
+</html>
